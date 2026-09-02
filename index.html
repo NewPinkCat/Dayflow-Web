@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dayflow — Offline-first Calendar & Productivity</title>
+<meta name="description" content="Dayflow is a fast, calm, offline-first desktop calendar and personal productivity app for Windows. Download the latest version.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-textured">
+  <div class="grain" id="grain"></div>
+
+  <!-- Top Nav -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 border-b border-white/5">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 bg-[var(--accent)] flex items-center justify-center relative">
+          <i class="fa-regular fa-calendar-days text-black text-base"></i>
+          <div class="absolute -inset-1 border border-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <div>
+          <div class="font-display text-2xl leading-none tracking-wider">DAYFLOW</div>
+          <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.3em] mt-0.5">CALM · FOCUSED · NATIVE</div>
+        </div>
+      </a>
+
+      <nav class="flex items-center gap-10">
+        <a href="#download" class="nav-link">Download</a>
+        <a href="#updates" class="nav-link">Update Notes</a>
+        <a href="https://github.com/NewPinkCat/Dayflow" target="_blank" rel="noopener" class="hidden md:inline-block font-heading text-xs tracking-[0.2em] uppercase text-black bg-[var(--silver)] px-5 py-2.5 hover:bg-white transition-colors">
+          GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative min-h-[92vh] w-full overflow-hidden flex flex-col justify-end" id="download">
+    <div class="hero-glow absolute inset-0 pointer-events-none"></div>
+
+    <div class="relative z-10 h-full max-w-[1200px] mx-auto px-6 lg:px-10 flex flex-col justify-end pb-20 pt-32">
+      <div class="reveal in-view max-w-4xl">
+        <div class="section-marker mb-6">
+          <span>OFFLINE-FIRST · WINDOWS</span>
+        </div>
+        <h1 class="font-display text-[15vw] md:text-[9vw] lg:text-[7.5vw] leading-[0.85] mb-8">
+          <span class="headline-line"><span>FAST.</span></span>
+          <span class="headline-line"><span>CALM.</span></span>
+          <span class="headline-line"><span class="text-stroke">FOCUSED.</span> <span class="text-[var(--accent)]">NATIVE.</span></span>
+        </h1>
+        <p class="max-w-xl text-[var(--fg-dim)] text-base md:text-lg leading-relaxed font-body">
+          Dayflow is a desktop calendar and personal productivity app. Notes, tasks, events, reminders — all local, all instant.
+        </p>
+      </div>
+
+      <!-- Download -->
+      <div class="mt-12 reveal-stagger flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+        <div class="flex items-center gap-6">
+          <a id="downloadBtn"
+             href="https://github.com/NewPinkCat/Dayflow/releases/latest"
+             class="pulse-btn bg-[var(--accent)] text-black px-8 md:px-10 py-5 font-display text-2xl md:text-3xl tracking-wider hover:bg-[var(--accent-bright)] transition-colors flex items-center gap-4"
+             target="_blank" rel="noopener">
+            <i class="fa-solid fa-download"></i>
+            <span>DOWNLOAD</span>
+          </a>
+          <div>
+            <div class="font-mono text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase" id="versionBadge">CHECKING VERSION…</div>
+            <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.15em] uppercase mt-1.5">
+              <span id="sizeBadge"></span><span id="dateBadge"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-md font-mono text-[11px] text-[var(--muted)] tracking-[0.15em] uppercase leading-relaxed">
+          <span class="text-[var(--accent)]">// WINDOWS 10 & 11</span> — NSIS INSTALLER · SIGNED · AUTO-UPDATES VIA GITHUB RELEASES
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPDATE NOTES -->
+  <section class="relative py-24 lg:py-32 border-t border-[var(--border)] bg-[var(--bg-darker)]" id="updates">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-10">
+      <div class="reveal mb-14">
+        <div class="section-marker mb-6"><span>Update Notes</span></div>
+        <h2 class="font-display text-6xl md:text-7xl leading-[0.9]">
+          What's <span class="text-[var(--accent)]">new</span> in Dayflow.
+        </h2>
+      </div>
+
+      <div class="reveal-stagger space-y-4" id="releases"><!-- js-rendered --></div>
+
+      <noscript>
+        <p class="font-mono text-xs text-[var(--muted)]">Enable JavaScript to load release notes.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[var(--border)] bg-black py-12 relative overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10">
+      <div class="relative flex flex-col md:flex-row justify-between gap-6 text-[var(--muted)] font-mono text-[11px] tracking-[0.15em] uppercase">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-[var(--accent)] flex items-center justify-center">
+            <i class="fa-regular fa-calendar-days text-black text-xs"></i>
+          </div>
+          <span>© <span id="year">2026</span> DAYFLOW</span>
+        </div>
+        <div class="flex gap-6">
+          <a href="https://github.com/NewPinkCat/Dayflow" target="_blank" rel="noopener" class="hover:text-[var(--accent)] transition-colors">GitHub</a>
+          <a href="https://github.com/NewPinkCat/Dayflow/releases" target="_blank" rel="noopener" class="hover:text-[var(--accent)] transition-colors">Releases</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -12,8 +12,15 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function inline(text) {
+  return escapeHtml(text)
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-[var(--fg)]">$1</strong>')
+    .replace(/`([^`]+)`/g, '<code class="font-mono text-[11px] text-[var(--accent)] bg-black/40 px-1.5 py-0.5 border border-[var(--border)]">$1</code>');
+}
+
 function renderMarkdown(text) {
   if (!text) return null;
+  text = text.replace(/^\uFEFF/, "");
   const lines = text.split("\n");
   const out = [];
   let list = [];
@@ -26,12 +33,14 @@ function renderMarkdown(text) {
   for (const raw of lines) {
     const line = raw.replace(/\s+$/, "");
     if (!line.trim()) { flushList(); continue; }
+    if (/^## \[?Unreleased\]?/.test(line)) continue;
+    if (/^\[[^\]]+\]:\s+https?:/.test(line)) continue;
     const h = line.match(/^#{1,3}\s+(.*)/);
-    if (h) { flushList(); out.push(`<h4 class="font-display text-2xl text-[var(--fg)] mb-3 mt-5">${escapeHtml(h[1])}</h4>`); continue; }
+    if (h) { flushList(); out.push(`<h4 class="font-display text-2xl text-[var(--fg)] mb-3 mt-5">${inline(h[1])}</h4>`); continue; }
     const bullet = line.match(/^[-*]\s+(.*)/);
-    if (bullet) { list.push(`<li class="flex gap-2 text-sm leading-relaxed text-[var(--fg-dim)]"><span class="text-[var(--accent)] mt-1.5">—</span><span>${escapeHtml(bullet[1])}</span></li>`); continue; }
+    if (bullet) { list.push(`<li class="flex gap-2 text-sm leading-relaxed text-[var(--fg-dim)]"><span class="text-[var(--accent)] mt-1.5">—</span><span>${inline(bullet[1])}</span></li>`); continue; }
     flushList();
-    out.push(`<p class="text-sm leading-relaxed text-[var(--fg-dim)] mb-2">${escapeHtml(line)}</p>`);
+    out.push(`<p class="text-sm leading-relaxed text-[var(--fg-dim)] mb-2">${inline(line)}</p>`);
   }
   flushList();
   return out.join("");

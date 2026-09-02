@@ -30,9 +30,20 @@ function renderMarkdown(text) {
       list = [];
     }
   };
+  let started = false;
   for (const raw of lines) {
     const line = raw.replace(/\s+$/, "");
     if (!line.trim()) { flushList(); continue; }
+    // Skip everything before the first release heading (e.g. the intro
+    // paragraph at the top of CHANGELOG.md) — only render actual release
+    // entries.
+    if (!started) {
+      if (/^##\s+\[.*?\]/.test(line) || /^##\s+\[?Unreleased\]?/.test(line)) {
+        started = true;
+      } else {
+        continue;
+      }
+    }
     if (/^## \[?Unreleased\]?/.test(line)) continue;
     if (/^\[[^\]]+\]:\s+https?:/.test(line)) continue;
     const h = line.match(/^#{1,3}\s+(.*)/);

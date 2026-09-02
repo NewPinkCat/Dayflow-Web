@@ -74,13 +74,37 @@ async function loadLatest() {
 
     const html = renderMarkdown(data.changelog || data.notes);
     releases.innerHTML = html
-      ? `<article class="release info-card p-6 md:p-7">
+      ? `<article class="release info-card p-6 md:p-7" id="releaseWrap">
            <div class="flex items-baseline justify-between gap-4 mb-4">
              <span class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none">${escapeHtml(data.version)}</span>
              <span class="dl-meta text-[var(--muted)]">${formatDate(data.pub_date)}</span>
            </div>
-           ${html}</article>`
+           <div class="release-text" id="releaseBody">${html}</div>
+           <button id="releaseToggle" class="release-toggle" hidden>See more</button>
+         </article>`
       : '<p class="text-sm text-[var(--fg-dim)]">No changelog available.</p>';
+
+    const wrap = releases.querySelector("#releaseWrap");
+    const body = releases.querySelector("#releaseBody");
+    const toggle = releases.querySelector("#releaseToggle");
+    if (body) {
+      const MAX_HEIGHT = 520;
+      if (body.scrollHeight > MAX_HEIGHT) {
+        body.style.maxHeight = MAX_HEIGHT + "px";
+        body.style.overflow = "hidden";
+        toggle.hidden = false;
+        toggle.addEventListener("click", () => {
+          const collapsed = body.style.maxHeight && body.style.maxHeight !== "none";
+          if (collapsed) {
+            body.style.maxHeight = "none";
+            toggle.textContent = "See less";
+          } else {
+            body.style.maxHeight = MAX_HEIGHT + "px";
+            toggle.textContent = "See more";
+          }
+        });
+      }
+    }
   } catch {
     version.textContent = "CHECK LATEST BUILD";
     releases.innerHTML =

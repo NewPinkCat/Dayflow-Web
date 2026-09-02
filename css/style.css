@@ -213,6 +213,23 @@ body {
 .release.open .release-body { grid-template-rows: 1fr; }
 .release-body > div { overflow: hidden; min-height: 0; }
 
+/* Collapsible long changelog */
+.release-text { transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.release-toggle {
+  margin-top: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: color 0.2s;
+}
+.release-toggle:hover { color: var(--accent-bright); }
+
 /* Download meta row */
 .dl-meta {
   font-family: 'JetBrains Mono', monospace;

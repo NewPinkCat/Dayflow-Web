@@ -61,8 +61,15 @@ function renderSections(text) {
     if (/^\[[^\]]+\]:\s+https?:/.test(line)) continue;
     const h = line.match(/^#{1,3}\s+(.*)/);
     if (h) { flushList(); if (current) current.body += `<h4 class="font-display text-xl text-[var(--fg)] mb-3 mt-4">${inline(h[1])}</h4>`; continue; }
-    const bullet = line.match(/^[-*]\s+(.*)/);
-    if (bullet) { list.push(`<li class="flex gap-2 text-sm leading-relaxed text-[var(--fg-dim)]"><span class="text-[var(--accent)] mt-1.5">—</span><span>${inline(bullet[1])}</span></li>`); continue; }
+    const bullet = line.match(/^(\s*)[-*]\s+(.*)/);
+    if (bullet) {
+      // Sub-bullets (indented "- item" lines) render as nested items instead
+      // of leaking the raw "-" into a paragraph.
+      const sub = bullet[1].length >= 2;
+      const marker = sub ? "\u2022" : "\u2014";
+      list.push(`<li class="flex gap-2 text-sm leading-relaxed text-[var(--fg-dim)] ${sub ? "pl-5" : ""}"><span class="text-[var(--accent)] mt-1.5">${marker}</span><span>${inline(bullet[2])}</span></li>`);
+      continue;
+    }
     flushList();
     if (current) current.body += `<p class="text-sm leading-relaxed text-[var(--fg-dim)] mb-2">${inline(line)}</p>`;
   }

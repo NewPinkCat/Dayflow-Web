@@ -4,7 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dayflow — Offline-first Calendar & Productivity</title>
-<meta name="description" content="Dayflow is a fast, calm, offline-first desktop calendar and personal productivity app for Windows. Download the latest version.">
+<meta name="description" content="Dayflow is a fast, calm, offline-first desktop calendar and personal productivity app for Windows. Notes, tasks, events, reminders — all local, all instant. Download the latest version.">
+<meta name="author" content="Dayflow">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://newpinkcat.github.io/Dayflow-Web/">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dayflow">
+<meta property="og:title" content="Dayflow — Offline-first Calendar & Productivity">
+<meta property="og:description" content="A fast, calm, offline-first desktop calendar and personal productivity app for Windows. Notes, tasks, events, reminders — all local, all instant.">
+<meta property="og:url" content="https://newpinkcat.github.io/Dayflow-Web/">
+<meta property="og:image" content="https://newpinkcat.github.io/Dayflow-Web/assets/og-image.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="Dayflow logo">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dayflow — Offline-first Calendar & Productivity">
+<meta name="twitter:description" content="A fast, calm, offline-first desktop calendar and personal productivity app for Windows.">
+<meta name="twitter:image" content="https://newpinkcat.github.io/Dayflow-Web/assets/og-image.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,11 +36,9 @@
   <!-- Top Nav -->
   <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 border-b border-white/5">
     <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 bg-[var(--accent)] flex items-center justify-center relative">
-          <i class="fa-regular fa-calendar-days text-black text-base"></i>
-          <div class="absolute -inset-1 border border-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        </div>
+      <a href="#" class="flex items-center gap-3 group relative">
+        <img src="assets/logo.png" alt="Dayflow logo" class="w-9 h-9 object-contain">
+        <div class="absolute -inset-1 border border-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div>
           <div class="font-display text-2xl leading-none tracking-wider">DAYFLOW</div>
           <div class="font-mono text-[10px] text-[var(--muted)] tracking-[0.3em] mt-0.5">CALM · FOCUSED · NATIVE</div>
@@ -75,7 +93,7 @@
         </div>
 
         <div class="max-w-md font-mono text-[11px] text-[var(--muted)] tracking-[0.15em] uppercase leading-relaxed">
-          <span class="text-[var(--accent)]">// WINDOWS 10 & 11</span> — NSIS INSTALLER · SIGNED · AUTO-UPDATES VIA GITHUB RELEASES
+          <span class="text-[var(--accent)]">// WINDOWS 10 & 11</span> — NSIS INSTALLER · UPDATER-SIGNED · AUTO-UPDATES VIA GITHUB RELEASES
         </div>
       </div>
     </div>
@@ -104,9 +122,7 @@
     <div class="max-w-[1200px] mx-auto px-6 lg:px-10">
       <div class="relative flex flex-col md:flex-row justify-between gap-6 text-[var(--muted)] font-mono text-[11px] tracking-[0.15em] uppercase">
         <div class="flex items-center gap-3">
-          <div class="w-8 h-8 bg-[var(--accent)] flex items-center justify-center">
-            <i class="fa-regular fa-calendar-days text-black text-xs"></i>
-          </div>
+          <img src="assets/logo.png" alt="Dayflow logo" class="w-8 h-8 object-contain">
           <span>© <span id="year">2026</span> DAYFLOW</span>
         </div>
       </div>
